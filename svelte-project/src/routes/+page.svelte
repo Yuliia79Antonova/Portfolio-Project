@@ -2,60 +2,106 @@
   import { goto } from '$app/navigation';
 </script>
 
+<section>
+  <h2>
+    <span>P</span><span>i</span><span>r</span><span>u</span><span>n</span><span>y</span><span>a</span>
+  </h2>
+
+  <p class="intro-text">
+    My work reflects harmony, thoughtful aesthetics,<br>
+    and the connection between nature, design and code.
+  </p>
+
+  <div class="screen">
+    <button class="icon-button" on:click={() => goto('/about')}>
+      <svg class="icon-svg" viewBox="0 0 100 100" style="margin-top: 8px;">
+        <circle cx="50" cy="28" r="10" />
+        <path d="M35,70 Q50,45 65,70" fill="none" stroke="#4a695a" stroke-width="4" />
+        <path d="M45,52 
+                 C42,48 38,48 38,52 
+                 C38,56 50,62 50,62 
+                 C50,62 62,56 62,52 
+                 C62,48 58,48 55,52" 
+              fill="none" stroke="#4a695a" stroke-width="2" />
+      </svg>
+      <div class="icon-label" style="margin-top: -8px;">About</div>
+    </button>
+
+    <button class="icon-button" on:click={() => goto('/works')}>
+      <svg class="icon-svg" viewBox="0 0 100 100">
+        <rect x="20" y="25" width="60" height="50" rx="6" fill="none" stroke="#4a695a" stroke-width="3" />
+        <path d="M75,75 Q80,70 78,65 Q76,60 70,65 Q72,70 75,75 Z" fill="#4a695a" />
+        <line x1="72" y1="66" x2="65" y2="58" stroke="#4a695a" stroke-width="3" />
+      </svg>
+      <div class="icon-label">Works</div>
+    </button>
+
+    <button class="icon-button" on:click={() => goto('/contacts')}>
+      <svg class="icon-svg" viewBox="0 0 100 100">
+        <rect x="20" y="25" width="50" height="50" rx="4" fill="none" stroke="#4a695a" stroke-width="3" />
+        <line x1="25" y1="35" x2="60" y2="35" stroke="#4a695a" stroke-width="2" />
+        <line x1="25" y1="45" x2="60" y2="45" stroke="#4a695a" stroke-width="2" />
+        <polygon points="70,70 85,85 80,90 65,75" fill="#4a695a" />
+      </svg>
+      <div class="icon-label">Contacts</div>
+    </button>
+  </div>
+</section>
+
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter&display=swap');
-  
 
-  main {
+  section {
     font-family: 'Inter', sans-serif;
     background: linear-gradient(to bottom, #c2e8e3, #f4f9f8);
     min-height: 100vh;
-    padding: 2rem;
+    padding: 1rem 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     color: #1e3d2f;
     border-radius: 2rem;
   }
-  
 
-  h1 {
+  h2 {
     font-family: 'Playfair Display', serif;
     font-size: 9rem;
-    font-weight: 600;
+    font-weight: 500;
     color: #333146;
     letter-spacing: 0.05em;
-    margin: 0 0 1.5rem 0;
+    margin-bottom: 1rem;
     display: flex;
     justify-content: center;
     gap: 0.1em;
     text-transform: uppercase;
+    margin-top: 1rem;
   }
 
-  h1 span {
+  h2 span {
     display: inline-block;
     animation: wave 2s ease-in-out infinite;
   }
 
-  h1 span:nth-child(1) { animation-delay: 0.2s; }
-  h1 span:nth-child(2) { animation-delay: 0.4s; }
-  h1 span:nth-child(3) { animation-delay: 0.6s; }
-  h1 span:nth-child(4) { animation-delay: 0.8s; }
-  h1 span:nth-child(5) { animation-delay: 1.0s; }
-  h1 span:nth-child(6) { animation-delay: 1.2s; }
-  h1 span:nth-child(7) { animation-delay: 1.4s; }
+  h2 span:nth-child(1) { animation-delay: 0.2s; }
+  h2 span:nth-child(2) { animation-delay: 0.4s; }
+  h2 span:nth-child(3) { animation-delay: 0.6s; }
+  h2 span:nth-child(4) { animation-delay: 0.8s; }
+  h2 span:nth-child(5) { animation-delay: 1.0s; }
+  h2 span:nth-child(6) { animation-delay: 1.2s; }
+  h2 span:nth-child(7) { animation-delay: 1.4s; }
 
   @keyframes wave {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
   }
 
-  .text {
+  .intro-text {
     text-align: center;
     font-style: italic;
-    font-size: 2rem;
+    font-size: 1.6rem;
     color: #505260;
     margin-bottom: 3rem;
+    max-width: 700px;
   }
 
   .screen {
@@ -83,7 +129,7 @@
     justify-content: start;
     box-shadow: 2px 2px 12px rgba(0,0,0,0.06);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
-    height: 320px; /* вертикальный прямоугольник */
+    height: 320px;
     text-align: center;
     animation: fadeIn 1s ease forwards;
     opacity: 0;
@@ -99,12 +145,6 @@
     box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.15);
   }
 
-  @keyframes fadeIn {
-    to {
-      opacity: 1;
-    }
-  }
-
   .icon-svg {
     width: 100px;
     height: 100px;
@@ -118,9 +158,16 @@
     color: #5e4b6e;
   }
 
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+
   @media (max-width: 768px) {
-    h1 {
-      font-size: 5rem;
+    h2 {
+      font-size: 3.5rem;
+      flex-wrap: wrap;
     }
 
     .screen {
@@ -138,60 +185,3 @@
     }
   }
 </style>
-
-<main>
-  <h1>
-    <span>P</span>
-    <span>i</span>
-    <span>r</span>
-    <span>u</span>
-    <span>n</span>
-    <span>y</span>
-    <span>a</span>
-  </h1>
-
-  <div class="text">
-    My work reflects harmony, thoughtful aesthetics,<br>
-    and the connection between nature, design and code.
-  </div>
-
-  <div class="screen">
-    <button class="icon-button" on:click={() => goto('/2About')}>
-      <svg class="icon-svg" viewBox="0 0 100 100" style="margin-top: 8px;">
-        <circle cx="50" cy="28" r="10" />
-        <path d="M35,70 Q50,45 65,70" fill="none" stroke="#4a695a" stroke-width="4" />
-        <path d="M45,52 
-                 C42,48 38,48 38,52 
-                 C38,56 50,62 50,62 
-                 C50,62 62,56 62,52 
-                 C62,48 58,48 55,52" 
-              fill="none" stroke="#4a695a" stroke-width="2" />
-      </svg>
-            <div class="icon-label" style="margin-top: -8px;" >About</div>
-    </button>
-
-    <button class="icon-button" on:click={() => goto('/3Works')}>
-      <svg class="icon-svg" viewBox="0 0 100 100">
-        <!-- Холст -->
-        <rect x="20" y="25" width="60" height="50" rx="6" fill="none" stroke="#4a695a" stroke-width="3" />
-        <!-- Кисть -->
-        <path d="M75,75 Q80,70 78,65 Q76,60 70,65 Q72,70 75,75 Z" fill="#4a695a" />
-        <line x1="72" y1="66" x2="65" y2="58" stroke="#4a695a" stroke-width="3" />
-      </svg>
-      <div class="icon-label">Works</div>
-    </button>
-
-    <button class="icon-button" on:click={() => goto('/4Contacts')}>
-      <svg class="icon-svg" viewBox="0 0 100 100">
-        <!-- Лист -->
-        <rect x="20" y="25" width="50" height="50" rx="4" fill="none" stroke="#4a695a" stroke-width="3" />
-        <!-- Линии текста -->
-        <line x1="25" y1="35" x2="60" y2="35" stroke="#4a695a" stroke-width="2" />
-        <line x1="25" y1="45" x2="60" y2="45" stroke="#4a695a" stroke-width="2" />
-        <!-- Карандаш -->
-        <polygon points="70,70 85,85 80,90 65,75" fill="#4a695a" />
-      </svg>
-      <div class="icon-label">Contacts</div>
-    </button>
-  </div>
-</main>
