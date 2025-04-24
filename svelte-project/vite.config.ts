@@ -1,6 +1,8 @@
-import { sveltekit } from '@sveltejs/kit/vite';
+// vite.config.js
 import { defineConfig } from 'vite';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 export default defineConfig({
-	plugins: [sveltekit()]
+  plugins: [svelte()],
+  base: '/Portfolio-Project/',   // <-- добавьте эту строку
 });

@@ -1,17 +1,13 @@
 import adapter from '@sveltejs/adapter-static';
-import preprocess from 'svelte-preprocess';
 
-const dev = process.env.NODE_ENV === 'development';
+const repo = 'Portfolio-Project';   // имя репозитория
 
 export default {
-  preprocess: preprocess(),
-
   kit: {
-    adapter: adapter({
-      fallback: '404.html'
-    }),
+    adapter: adapter(),
     paths: {
-      base: dev ? '' : '/Portfolio-Project'
-    }
+      base: `/${repo}`,            // <‑‑ ключевая строка
+    },
+    prerender: { entries: ['*'] }  // генерировать все страницы
   }
 };
