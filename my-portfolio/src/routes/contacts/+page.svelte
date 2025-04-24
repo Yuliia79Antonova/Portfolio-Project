@@ -2,12 +2,38 @@
   import { goto } from '$app/navigation';
 </script>
 
+<main>
+  <div class="home-icon" on:click={() => goto('/')}>
+    <svg viewBox="0 0 24 24">
+      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+    </svg>
+  </div>
+
+  <h1>
+    <span>P</span><span>i</span><span>r</span><span>u</span><span>n</span><span>y</span><span>a</span>
+  </h1>
+
+  <div class="screen">
+    <div class="contact-box">
+      <p class="label">Address</p>
+      <p>yleaan2005@gmail.com</p>
+      <p>0000012proverka@gmail.com</p>
+      <p>C00301432@setu.ie</p>
+
+      <p class="label">Links</p>
+      <p><a href="https://facebook.com" target="_blank">Facebook</a></p>
+      <p><a href="https://instagram.com" target="_blank">Instagram</a></p>
+      <p><a href="https://TikTok.com" target="_blank">TikTok</a></p>
+    </div>
+  </div>
+</main>
+
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter&display=swap');
-
+  
   main {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(to bottom, #c2e8e3, #f4f9f8);
+    
+    
     min-height: 100vh;
     padding: 2rem;
     display: flex;
@@ -24,13 +50,6 @@
     right: 1.5rem;
     cursor: pointer;
     z-index: 1000;
-  }
-
-  .home-icon svg {
-    width: 32px;
-    height: 32px;
-    fill: #2e4b3c;
-    transition: transform 0.2s ease;
   }
 
   .home-icon:hover svg {
@@ -129,29 +148,3 @@
     }
   }
 </style>
-
-<main>
-  <div class="home-icon" on:click={() => goto('/')}>
-    <svg viewBox="0 0 24 24">
-      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-    </svg>
-  </div>
-
-  <h1>
-    <span>P</span><span>i</span><span>r</span><span>u</span><span>n</span><span>y</span><span>a</span>
-  </h1>
-
-  <div class="screen">
-    <div class="contact-box">
-      <p class="label">Address</p>
-      <p>yleaan2005@gmail.com</p>
-      <p>0000012proverka@gmail.com</p>
-      <p>C00301432@setu.ie</p>
-
-      <p class="label">Links</p>
-      <p><a href="https://facebook.com" target="_blank">Facebook</a></p>
-      <p><a href="https://instagram.com" target="_blank">Instagram</a></p>
-      <p><a href="https://TikTok.com" target="_blank">TikTok</a></p>
-    </div>
-  </div>
-</main>

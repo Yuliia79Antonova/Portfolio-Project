@@ -2,7 +2,7 @@
   import { goto } from '$app/navigation';
 </script>
 
-<section>
+<main>
   <h2>
     <span>P</span><span>i</span><span>r</span><span>u</span><span>n</span><span>y</span><span>a</span>
   </h2>
@@ -24,7 +24,7 @@
                  C62,48 58,48 55,52" 
               fill="none" stroke="#4a695a" stroke-width="2" />
       </svg>
-      <div class="icon-label" style="margin-top: -8px;">About</div>
+      <div class="icon-label">About</div>
     </button>
 
     <button class="icon-button" on:click={() => goto('/works')}>
@@ -46,14 +46,14 @@
       <div class="icon-label">Contacts</div>
     </button>
   </div>
-</section>
+</main>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter&display=swap');
-
-  section {
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;700&display=swap');
+  
+  main {
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(to bottom, #c2e8e3, #f4f9f8);
+    background: transparent;
     min-height: 100vh;
     padding: 1rem 1rem;
     display: flex;
@@ -98,7 +98,7 @@
   .intro-text {
     text-align: center;
     font-style: italic;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     color: #505260;
     margin-bottom: 3rem;
     max-width: 700px;
@@ -146,16 +146,16 @@
   }
 
   .icon-svg {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     margin-bottom: 1.5rem;
     fill: #6c6884;
   }
 
   .icon-label {
-    font-size: 1.3rem;
-    font-weight: 500;
-    color: #5e4b6e;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333146;
   }
 
   @keyframes fadeIn {
@@ -180,8 +180,8 @@
     }
 
     .icon-svg {
-      width: 80px;
-      height: 80px;
+      width: 100px;
+      height: 100px;
     }
   }
 </style>

@@ -4,12 +4,11 @@
 </script>
 
 <style>
-
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter&display=swap');
   
-main {
+  main {
     font-family: 'Inter', sans-serif;
-    background: url('1.png') no-repeat center center fixed;
+    background: url('/1.png') no-repeat center center fixed; 
     background-size: cover;
     min-height: 100vh;
     padding: 2rem;
@@ -36,7 +35,7 @@ main {
   .home-icon svg {
     width: 32px;
     height: 32px;
-    fill: #2e4b3c;
+    fill: #5b1301;
     transition: transform 0.2s ease;
   }
 
@@ -77,7 +76,7 @@ main {
 </style>
 
 <main>
-  <div class="home-icon" on:click={() => goto('/')} >
+  <div class="home-icon" on:click={() => goto('/')}>
     <svg viewBox="0 0 24 24">
       <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
     </svg>
