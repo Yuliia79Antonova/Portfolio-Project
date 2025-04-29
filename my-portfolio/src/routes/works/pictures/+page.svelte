@@ -1,46 +1,128 @@
 <script>
-    import { goto } from '$app/navigation';
+  import { goto } from '$app/navigation';
+
+  let selectedImage = null;
+  let filter = 'all';
+
+  // About pictures
+  const artworks = [
+    {
+      src: '/images/art1.jpg',
+      title: 'It is rain in Ireland',
+      year: 2021,
+      size: '40x60 sм',
+      medium: 'acrylic'
+    },
+    {
+      src: '/images/art2.jpg',
+      title: 'Cat',
+      year: 2022,
+      size: '30x40 sм',
+      medium: 'acrylic'
+    },
+    {
+      src: '/images/art3.jpg',
+      title: 'Dog',
+      year: 2023,
+      size: '15x10 sm',
+      medium: 'pencil'
+    },
+    {
+      src: '/images/art4.jpg',
+      title: 'A little house near the sea',
+      year: 2020,
+      size: '17x12 sm',
+      medium: 'acrylic'
+    },
+    {
+      src: '/images/art5.jpg',
+      title: 'Poppies',
+      year: 2023,
+      size: '40x60 sм',
+      medium: 'acrylic'
+    },
+    {
+      src: '/images/art6.jpg',
+      title: 'Peacock',
+      year: 2023,
+      size: '40x60 sм',
+      medium: 'acrylic'
+    },
+    {
+      src: '/images/art7.jpg',
+      title: 'Apple',
+      year: 2024,
+      size: '15x12 sм',
+      medium: 'pencil'
+    },
+     ];
+
+  // Functions
+  function openImage(src) {
+    selectedImage = src;
+  }
+
+  function closeModal() {
+    selectedImage = null;
+  }
+
+  function setFilter(type) {
+    filter = type;
+  }
+
+  $: filteredArtworks = filter === 'all'
+    ? artworks
+    : artworks.filter(a => a.medium === filter);
+</script>
+
   
-    let selectedImage = null;
-  
-    function openImage(src) {
-      selectedImage = src;
-    }
-  
-    function closeModal() {
-      selectedImage = null;
-    }
-  </script>
-  
-  <section>
-    <h2>Pictures Photos Stamps Baners</h2>
-    <p>Here are some of my paintings and illustrations. Grab a cup of tea — it's a colorful ride.</p>
-  
-    <div class="gallery">
-      <img src="/images/art1.jpg" alt="Artwork 1" class="art-image" style="animation-delay: 0.1s;" on:click={() => openImage('/images/art1.jpg')} />
-      <img src="/images/art2.jpg" alt="Artwork 2" class="art-image" style="animation-delay: 0.2s;" on:click={() => openImage('/images/art2.jpg')} />
-      <img src="/images/art3.jpg" alt="Artwork 3" class="art-image" style="animation-delay: 0.3s;" on:click={() => openImage('/images/art3.jpg')} />
-      <img src="/images/art4.jpg" alt="Artwork 4" class="art-image" style="animation-delay: 0.4s;" on:click={() => openImage('/images/art4.jpg')} />
-    </div>
-  
-    <button on:click={() => goto('/works')}>← Back to Works</button>
-  
-    {#if selectedImage}
-      <div class="modal" on:click={closeModal}>
-        <div class="modal-content" on:click|stopPropagation>
-          <img src={selectedImage} alt="Full view" />
-          <button class="close-btn" on:click={closeModal}>×</button>
+<section>
+  <h2>Pictures Photos Stamps Baners</h2>
+  <p>Here are some of my paintings and illustrations. Grab a cup of tea — it's a colorful ride.</p>
+
+  <!-- Фильтр -->
+  <div class="filter-buttons">
+    <button on:click={() => setFilter('all')} class={filter === 'all'}>All</button>
+    <button on:click={() => setFilter('acrylic')} class={filter === 'acrylic'}>Acrylic</button>
+    <button on:click={() => setFilter('pencil')} class={filter === 'pencil'}>Pencil</button>
+    <button on:click={() => setFilter('digital')} class={filter === 'digital'}>Digital</button>
+    <button on:click={() => setFilter('photo')} class={filter === 'photo'}>Photo</button>
+  </div>
+
+  <!-- Gallery -->
+  <div class="gallery">
+    {#each filteredArtworks as art}
+      <div class="card" on:click={() => openImage(art.src)}>
+        <img src={art.src} alt={art.title} class="art-image" />
+        <div class="info">
+          <h3>{art.title}</h3>
+          <p><strong>Size:</strong> {art.size}</p>
+          <p><strong>Material:</strong> {art.medium}</p>
+          <p><strong>Year:</strong> {art.year}</p>
         </div>
       </div>
-    {/if}
-  </section>
+    {/each}
+  </div>
+
+  <button on:click={() => goto('/works')}>← Back to Works</button>
+
+  {#if selectedImage}
+    <div class="modal" on:click={closeModal}>
+      <div class="modal-content" on:click|stopPropagation>
+        <img src={selectedImage} alt="Full view" />
+        <button class="close-btn" on:click={closeModal}>×</button>
+      </div>
+    </div>
+  {/if}
+</section>
+
   
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter&display=swap');
   
     section {
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(to bottom, #c2e8e3, #f4f9f8);
+     
       min-height: 100vh;
       padding: 4rem 2rem;
       display: flex;
@@ -82,8 +164,7 @@
       border-radius: 1.5rem;
       box-shadow: 0 8px 20px rgba(0,0,0,0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      opacity: 0;
-      animation: fadeIn 1s forwards;
+      
     }
   
     .art-image:hover {
@@ -174,5 +255,67 @@
       cursor: pointer;
       text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
     }
+
+    .filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+  }
+
+  .filter-buttons button {
+    background: #dcefe9;
+    border-radius: 1rem;
+    padding: 0.7rem 1.5rem;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #2d4a3d;
+    transition: all 0.25s ease;
+  }
+
+  .filter-buttons button:hover,
+  .filter-buttons button.selected {
+    background-color: #b2d9c5;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .card {
+    background: #f1e0d2;
+    border-radius: 0.5rem;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+  }
+
+  .card img.art-image {
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+    box-shadow: none;
+    animation: none;
+  }
+
+  .info {
+    padding: 1rem 1rem;
+    font-size: 0.5rem;
+    color: #2c4436;
+    text-align: left;
+  }
+
+  .info h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
   </style>
   

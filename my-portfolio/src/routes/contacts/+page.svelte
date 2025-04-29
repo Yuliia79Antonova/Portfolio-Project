@@ -100,7 +100,7 @@
   }
 
   .contact-box {
-    background: #f9eee5;
+    background: #f1e0d2;
     padding: 2rem;
     border-radius: 1.2rem;
     border: none;

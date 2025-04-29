@@ -97,9 +97,9 @@
 
   .intro-text {
     text-align: center;
-    font-style: italic;
-    font-size: 1.5rem;
-    color: #505260;
+    font-family: 'Dansing', cursive;
+    font-size: 1.8rem;
+    color: #030a38;
     margin-bottom: 3rem;
     max-width: 700px;
   }
@@ -118,7 +118,7 @@
   }
 
   .icon-button {
-    background: #f9eee5;
+    background: #f1e0d2;
     border-radius: 1.2rem;
     padding: 2rem;
     border: none;

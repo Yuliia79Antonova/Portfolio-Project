@@ -84,7 +84,7 @@
     }
   
     .icon-button {
-      background: #f9eee5;
+      background: #f1e0d2;
       border-radius: 1.2rem;
       padding: 2rem;
       border: none;

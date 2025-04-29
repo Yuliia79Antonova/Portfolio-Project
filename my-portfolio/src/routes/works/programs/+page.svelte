@@ -1,36 +1,86 @@
 <script>
   import { goto } from '$app/navigation';
+
   let isModalOpen = false;
   let selectedImage = '';
   let selectedTitle = '';
 
-  const openModal = (image, title) => {
+  let filter = 'all';
+
+  const programs = [
+    {
+      src: '/images/program1.png',
+      title: 'Flower Topia',
+      year: 2023,
+      type: 'game',
+      note: 'mini-game'
+    },
+    {
+      src: '/images/program2.png',
+      title: 'To Do App',
+      year: 2022,
+      type: 'app',
+      note: 'easy-to-use application'
+    },
+    {
+      src: '/images/program3.png',
+      title: 'Pixel Warrior',
+      year: 2024,
+      type: 'game',
+      note: 'mini-game'
+    },
+    {
+      src: '/images/program4.png',
+      title: 'Budget Buddy',
+      year: 2021,
+      type: 'app',
+      note: 'financial friend'
+    }
+  ];
+
+  function openModal(image, title) {
     selectedImage = image;
     selectedTitle = title;
     isModalOpen = true;
-  };
+  }
 
-  const closeModal = () => {
+  function closeModal() {
     isModalOpen = false;
     selectedImage = '';
     selectedTitle = '';
-  };
+  }
+
+  function setFilter(type) {
+    filter = type;
+  }
+
+  $: filteredPrograms = filter === 'all' ? programs : programs.filter(p => p.type === filter);
 </script>
+
 
 <section>
   <h2>Programs</h2>
   <p>Here you’ll find some of the applications and tools I’ve created — useful, fun, or just experimental!</p>
 
-  <div class="gallery">
-    <div class="program-tile" style="animation-delay: 0.1s;" on:click={() => openModal('/images/program1.png', 'Flower Topia')}>
-      <img src="/images/program1.png" alt="Program 1" class="program-image" />
-      <div class="program-title">Flower Topia</div>
-    </div>
+  <!-- Фильтры -->
+  <div class="filter-buttons">
+    <button on:click={() => setFilter('all')} class={filter === 'all' ? 'selected' : ''}>All</button>
+    <button on:click={() => setFilter('game')} class={filter === 'game' ? 'selected' : ''}>Game</button>
+    <button on:click={() => setFilter('app')} class={filter === 'app' ? 'selected' : ''}>App</button>
+  </div>
 
-    <div class="program-tile" style="animation-delay: 0.2s;" on:click={() => openModal('/images/program2.png', 'To Do App')}>
-      <img src="/images/program2.png" alt="Program 2" class="program-image" />
-      <div class="program-title">To Do App</div>
-    </div>
+  <!-- Галерея -->
+  <div class="gallery">
+    {#each filteredPrograms as program}
+      <div class="program-tile" on:click={() => openModal(program.src, program.title)}>
+        <img src={program.src} alt={program.title} class="program-image" />
+        <div class="program-card">
+          <div class="program-title">{program.title}</div>
+          <div class="program-meta"><strong>{program.year}</strong> • {program.type}</div>
+          <p class="program-note">{program.note}</p>
+        </div>
+      </div>
+    {/each}
   </div>
 
   <button on:click={() => goto('/works')}>← Back to Works</button>
@@ -46,12 +96,13 @@
   {/if}
 </section>
 
+
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter&display=swap');
   
   section {
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(to bottom, #c2e8e3, #f4f9f8);
+    
     min-height: 100vh;
     padding: 4rem 2rem;
     display: flex;
@@ -204,4 +255,47 @@
       font-size: 1.1rem;
     }
   }
+
+  .filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.filter-buttons button {
+  background: #d4edea;
+  border-radius: 1rem;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #2e4a41;
+  transition: all 0.25s ease;
+}
+
+.filter-buttons button:hover,
+.filter-buttons button.selected {
+  background-color: #a6d9cc;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.program-card {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.program-meta {
+  font-size: 0.9rem;
+  color: #666f80;
+  margin: 0.3rem 0;
+}
+
+.program-note {
+  font-size: 0.9rem;
+  color: #4a5468;
+  margin-top: 0.3rem;
+}
 </style>

@@ -1,38 +1,93 @@
 <script>
-    import { goto } from '$app/navigation';
-  
-    let selectedImage = null;
-  
-    function openImage(src) {
-      selectedImage = src;
+  import { goto } from '$app/navigation';
+
+  let selectedImage = null;
+  let filter = 'all';
+
+  const logos = [
+    {
+      src: '/images/logo1.png',
+      title: 'TwoU',
+      year: 2022,
+      note: 'Logo for company',
+      type: 'label'
+    },
+    {
+      src: '/images/logo2.png',
+      title: 'Fluffy Head',
+      year: 2023,
+      note: 'Logo for salon',
+      type: 'logo'
+    },
+    {
+      src: '/images/logo3.png',
+      title: 'Microbian',
+      year: 2021,
+      note: 'Hero',
+      type: 'game'
+    },
+    {
+      src: '/images/logo4.png',
+      title: 'SuperMariia',
+      year: 2024,
+      note: 'Hero',
+      type: 'cartoon'
     }
-  
-    function closeModal() {
-      selectedImage = null;
-    }
-  </script>
+  ];
+
+  function openImage(src) {
+    selectedImage = src;
+  }
+
+  function closeModal() {
+    selectedImage = null;
+  }
+
+  function setFilter(type) {
+    filter = type;
+  }
+
+  $: filteredLogos = filter === 'all' ? logos : logos.filter(l => l.type === filter);
+</script>
+
   
   <section>
     <h2>Logos Heroes</h2>
-    <p>This is a gallery of logos I have designed. Clean, bold, and full of character.</p>
-  
-    <div class="gallery">
-      <img src="/images/logo1.png" alt="Logo 1" class="logo-image" style="animation-delay: 0.1s;" on:click={() => openImage('/images/logo1.png')} />
-      <img src="/images/logo2.png" alt="Logo 2" class="logo-image" style="animation-delay: 0.2s;" on:click={() => openImage('/images/logo2.png')} />
-      <img src="/images/logo3.png" alt="Logo 3" class="logo-image" style="animation-delay: 0.3s;" on:click={() => openImage('/images/logo3.png')} />
-      <img src="/images/logo4.png" alt="Logo 4" class="logo-image" style="animation-delay: 0.4s;" on:click={() => openImage('/images/logo4.png')} />
-    </div>
-  
-    <button on:click={() => goto('/works')}>← Back to Works</button>
-  
-    {#if selectedImage}
-      <div class="modal" on:click={closeModal}>
-        <div class="modal-content" on:click|stopPropagation>
-          <img src={selectedImage} alt="Full view" />
-          <button class="close-btn" on:click={closeModal}>×</button>
-        </div>
+<p>This is a gallery of logos I have designed. Clean, bold, and full of character.</p>
+
+<!-- Фильтр -->
+<div class="filter-buttons">
+  <button on:click={() => setFilter('all')} class={filter === 'all' ? 'selected' : ''}>All</button>
+  <button on:click={() => setFilter('label')} class={filter === 'label' ? 'selected' : ''}>Label</button>
+  <button on:click={() => setFilter('game')} class={filter === 'game' ? 'selected' : ''}>Game</button>
+  <button on:click={() => setFilter('logo')} class={filter === 'logo' ? 'selected' : ''}>Logo</button>
+  <button on:click={() => setFilter('cartoon')} class={filter === 'cartoon' ? 'selected' : ''}>Cartoon</button>
+</div>
+
+<div class="gallery">
+  {#each filteredLogos as logo}
+    <div class="card" on:click={() => openImage(logo.src)}>
+      <img src={logo.src} alt={logo.title} class="logo-image" />
+      <div class="info">
+        <h3>{logo.title}</h3>
+        <p><strong>Год:</strong> {logo.year}</p>
+        <p>{logo.note}</p>
       </div>
-    {/if}
+    </div>
+  {/each}
+</div>
+
+<button on:click={() => goto('/works')}>← Back to Works</button>
+
+{#if selectedImage}
+  <div class="modal" on:click={closeModal}>
+    <div class="modal-content" on:click|stopPropagation>
+      <img src={selectedImage} alt="Full view" />
+      <button class="close-btn" on:click={closeModal}>×</button>
+    </div>
+  </div>
+{/if}
+
   </section>
   
   <style>
@@ -40,7 +95,7 @@
   
     section {
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(to bottom, #d8f0e3, #f7fdfb);
+      
       min-height: 100vh;
       padding: 4rem 2rem;
       display: flex;
@@ -186,5 +241,73 @@
       cursor: pointer;
       text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
     }
+
+    .filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.filter-buttons button {
+  background: #dcefe9;
+  border-radius: 1rem;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #2d4a3d;
+  transition: all 0.25s ease;
+}
+
+.filter-buttons button:hover,
+.filter-buttons button.selected {
+  background-color: #b2d9c5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card .logo-image {
+  width: 100%;
+  height: auto;
+  max-height: 180px;
+  object-fit: contain;
+  background: white;
+  padding: 1rem;
+  border-radius: 0;
+  animation: fadeIn 1s forwards;
+  opacity: 0;
+  box-shadow: none;
+}
+
+.info {
+  padding: 1rem;
+  font-size: 0.95rem;
+  color: #2c4436;
+  text-align: center;
+}
+
+.info h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
   </style>
   
