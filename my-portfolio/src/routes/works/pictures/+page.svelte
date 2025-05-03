@@ -55,6 +55,35 @@
       size: '15x12 sм',
       medium: 'pencil'
     },
+    {
+      src: '/images/art8.jpg',
+      title: 'Inside',
+      year: 2022,
+      size: '352x396',
+      medium: 'digital'
+    },
+    {
+      src: '/images/art9.jpg',
+      title: 'Seashell',
+      year: 2022,
+      size: '394x545',
+      medium: 'digital'
+    },
+    {
+      src: '/images/art10.jpg',
+      title: 'Waterfall',
+      year: 2022,
+      size: '591x1280',
+      medium: 'photo'
+    },
+   
+    {
+      src: '/images/art13.jpg',
+      title: 'Circle',
+      year: 2022,
+      size: '591x1280',
+      medium: 'photo'
+    },
      ];
 
   // Functions
@@ -317,5 +346,81 @@
     font-size: 1.2rem;
     font-weight: 600;
   }
+  @media (max-width: 768px) {
+  h2 {
+    font-size: 2.4rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .info {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .filter-buttons {
+    gap: 0.5rem;
+    padding: 0 1rem;
+  }
+
+  .filter-buttons button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .modal-content img {
+    max-width: 90vw;
+    max-height: 80vh;
+  }
+}
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  .info h3 {
+    font-size: 1rem;
+  }
+
+  .card {
+    padding: 0.5rem;
+  }
+
+  .info {
+    font-size: 0.7rem;
+  }
+
+  .filter-buttons {
+    flex-direction: column;
+  }
+
+  .filter-buttons button {
+    width: 100%;
+    text-align: center;
+  }
+}
+.modal-content {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.art-image {
+  object-fit: contain;
+}
+
+
   </style>
   

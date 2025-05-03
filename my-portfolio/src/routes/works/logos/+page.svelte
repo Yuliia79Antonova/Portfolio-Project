@@ -309,5 +309,122 @@
   font-size: 1.2rem;
   font-weight: 600;
 }
+@media (max-width: 1024px) {
+  .gallery {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .filter-buttons {
+    gap: 0.8rem;
+  }
+
+  .filter-buttons button {
+    font-size: 0.95rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  .info h3 {
+    font-size: 1.1rem;
+  }
+
+  .info {
+    font-size: 0.85rem;
+  }
+
+  .modal-content img {
+    max-width: 90vw;
+    max-height: 80vh;
+  }
+}
+
+@media (max-width: 768px) {
+  h2 {
+    font-size: 2.4rem;
+    text-align: center;
+  }
+
+  p {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 0 0.5rem;
+  }
+
+  .filter-buttons {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .filter-buttons button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .card {
+    padding: 0.5rem;
+  }
+
+  .info h3 {
+    font-size: 1rem;
+  }
+
+  .info {
+    font-size: 0.75rem;
+  }
+
+  .modal-content img {
+    max-width: 85vw;
+    max-height: 75vh;
+  }
+}
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .filter-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .filter-buttons button {
+    width: 100%;
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+
+  .info h3 {
+    font-size: 0.95rem;
+  }
+
+  .info {
+    font-size: 0.7rem;
+  }
+
+  .modal-content img {
+    max-width: 90vw;
+    max-height: 70vh;
+  }
+}
+
   </style>
   

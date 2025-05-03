@@ -149,6 +149,87 @@
         height: 90px;
       }
     }
+    @media (max-width: 1024px) {
+  .screen {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 2rem;
+    gap: 1.5rem;
+  }
+
+  .icon-button {
+    height: auto;
+    max-width: 100%;
+    padding: 1.5rem;
+  }
+
+  .icon-svg {
+    width: 80px;
+    height: 80px;
+  }
+
+  .icon-label {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 3rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .screen {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+
+  .icon-button {
+    height: auto;
+    padding: 1.2rem;
+  }
+
+  .icon-svg {
+    width: 70px;
+    height: 70px;
+  }
+
+  .icon-label {
+    font-size: 1rem;
+  }
+
+  .home-icon {
+    top: 1rem;
+    right: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .icon-label {
+    font-size: 0.9rem;
+  }
+
+  .icon-svg {
+    width: 60px;
+    height: 60px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    text-align: center;
+    flex-wrap: wrap;
+  }
+
+  .screen {
+    gap: 0.8rem;
+  }
+
+  .icon-button {
+    padding: 1rem;
+  }
+}
+
   </style>
   
   <main>
