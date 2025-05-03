@@ -62,14 +62,14 @@
   <h2>Programs</h2>
   <p>Here you’ll find some of the applications and tools I’ve created — useful, fun, or just experimental!</p>
 
-  <!-- Фильтры -->
+  
   <div class="filter-buttons">
     <button on:click={() => setFilter('all')} class={filter === 'all' ? 'selected' : ''}>All</button>
     <button on:click={() => setFilter('game')} class={filter === 'game' ? 'selected' : ''}>Game</button>
     <button on:click={() => setFilter('app')} class={filter === 'app' ? 'selected' : ''}>App</button>
   </div>
 
-  <!-- Галерея -->
+  
   <div class="gallery">
     {#each filteredPrograms as program}
       <div class="program-tile" on:click={() => openModal(program.src, program.title)}>

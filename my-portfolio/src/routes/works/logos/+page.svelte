@@ -83,7 +83,7 @@
   <div class="modal" on:click={closeModal}>
     <div class="modal-content" on:click|stopPropagation>
       <img src={selectedImage} alt="Full view" />
-      <button class="close-btn" on:click={closeModal}>×</button>
+      <button class="close-btn" on:click={closeModal}>X</button>
     </div>
   </div>
 {/if}
@@ -131,8 +131,8 @@
       max-width: 1000px;
       margin-bottom: 3rem;
       
-    padding-right: 2rem; /* Добавлен отступ справа */
-    box-sizing: border-box; /* Чтобы отступы учитывались в общей ширине */
+    padding-right: 2rem; 
+    box-sizing: border-box; 
     }
   
     .logo-image {
@@ -150,7 +150,7 @@
   
     @media (max-width: 768px) {
     .gallery {
-      padding-left: 0.5rem; /* Уменьшаем отступы для мобильных */
+      padding-left: 0.5rem; 
       padding-right: 0.5rem;
     }
     }
